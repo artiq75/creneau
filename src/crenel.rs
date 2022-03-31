@@ -1,5 +1,11 @@
 use crate::user;
 
+use std::collections::HashMap;
+
+const WEEK_DAYS: [&str; 7] = [
+    "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche",
+];
+
 fn get_begin() -> i8 {
     loop {
         let value = user::get_i8_input();
@@ -45,4 +51,15 @@ pub fn get_crenels() -> Vec<[i8; 2]> {
         }
     }
     crenels
+}
+
+// Amêloriation à venir
+pub fn get_week_crenels() -> HashMap<String, Vec<[i8; 2]>> {
+    let mut week_crenels = HashMap::new();
+    for day in WEEK_DAYS {
+        println!("{}", day.to_uppercase());
+        let crenels = get_crenels();
+        week_crenels.insert(day.to_string(), crenels);
+    }
+    week_crenels
 }
