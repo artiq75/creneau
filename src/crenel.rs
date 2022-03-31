@@ -23,7 +23,7 @@ const WEEK_DAYS: [&str; 7] = [
 
 fn get_begin() -> i8 {
     loop {
-        let value = user::get_i8_input();
+        let value = user::i8_input();
         if value < 0 || value > 23 {
             println!("Le nombre doit être >= 0 ou <= 23");
             continue;
@@ -34,7 +34,7 @@ fn get_begin() -> i8 {
 
 fn get_end(begin: i8) -> i8 {
     loop {
-        let value = user::get_i8_input();
+        let value = user::i8_input();
         if value < 0 || value > 23 {
             println!("Le nombre doit être >= 0 ou <= 23");
             continue;
@@ -72,7 +72,7 @@ pub fn get_crenels() -> Vec<Crenel> {
 pub fn get_week_crenels() -> HashMap<String, Vec<Crenel>> {
     let mut week_crenels = HashMap::new();
     for day in WEEK_DAYS {
-        println!("{}", day.to_uppercase());
+        println!("{}", day);
         let crenels = get_crenels();
         week_crenels.insert(day.to_string(), crenels);
     }
