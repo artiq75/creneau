@@ -2,6 +2,21 @@ use crate::user;
 
 use std::collections::HashMap;
 
+pub struct Crenel {
+    begin: i8,
+    end: i8,
+}
+
+impl Crenel {
+    pub fn new(begin: i8, end: i8) -> Self {
+        Self { begin, end }
+    }
+
+    pub fn to_string(&self) -> String {
+        format!("de {}h à {}h", self.begin, self.end)
+    }
+}
+
 const WEEK_DAYS: [&str; 7] = [
     "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche",
 ];
@@ -32,17 +47,17 @@ fn get_end(begin: i8) -> i8 {
     }
 }
 
-pub fn get_crenel() -> [i8; 2] {
+pub fn get_crenel() -> Crenel {
     println!("Debut: ");
     let begin = get_begin();
 
     println!("Fin: ");
     let end = get_end(begin);
 
-    [begin, end]
+    Crenel::new(begin, end)
 }
 
-pub fn get_crenels() -> Vec<[i8; 2]> {
+pub fn get_crenels() -> Vec<Crenel> {
     let mut crenels = Vec::new();
     loop {
         crenels.push(get_crenel());
@@ -53,8 +68,8 @@ pub fn get_crenels() -> Vec<[i8; 2]> {
     crenels
 }
 
-// Amêloriation à venir
-pub fn get_week_crenels() -> HashMap<String, Vec<[i8; 2]>> {
+// Amêloriations à venir
+pub fn get_week_crenels() -> HashMap<String, Vec<Crenel>> {
     let mut week_crenels = HashMap::new();
     for day in WEEK_DAYS {
         println!("{}", day.to_uppercase());
